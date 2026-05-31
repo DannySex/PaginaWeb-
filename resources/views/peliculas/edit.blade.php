@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-sm">
             <div class="card-header bg-warning text-dark">
-                <h3>Editar Película</h3>
+                <h3>Editar Pelicula</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('peliculas.update', $pelicula->id) }}" method="POST">

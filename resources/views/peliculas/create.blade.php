@@ -3,11 +3,14 @@
 @section('content')
     <h1>Añadir Película</h1>
 
-    <form action="{{ route('peliculas.store') }}" method="POST">
+    <form action="{{ route('peliculas.store') }}"
+          method="POST"
+          enctype="multipart/form-data">
         @csrf
- <div class="mb-3">
+
+        <div class="mb-3">
             <label for="titulo" class="form-label">Título</label>
-            <input type="text" name="titulo" id="titulo" class="form-control" >
+            <input type="text" name="titulo" id="titulo" class="form-control">
         </div>
 
         <div class="mb-3">
@@ -25,6 +28,13 @@
             <input type="number" name="anio" id="anio" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <div class="mb-3">
+            <label class="form-label">Imagen</label>
+            <input type="file" name="imagen" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Guardar
+        </button>
     </form>
 @endsection

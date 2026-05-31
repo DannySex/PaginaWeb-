@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class PeliculaController extends Controller
 {
     public function index()
-    
     {
         $peliculas = Pelicula::all();
         return view('peliculas.index', compact('peliculas'));
@@ -25,9 +24,29 @@ class PeliculaController extends Controller
             'titulo' => 'required',
         ]);
 
-        Pelicula::create($request->only(['titulo', 'descripcion', 'genero', 'anio']));
+        $datos = $request->only([
+            'titulo',
+            'descripcion',
+            'genero',
+            'anio'
+        ]);
 
-        return redirect()->route('peliculas.index')->with('success', 'Película agregada correctamente.');
+        if ($request->hasFile('imagen')) {
+
+            $archivo = $request->file('imagen');
+
+            $nombre = time() . '.' . $archivo->getClientOriginalExtension();
+
+            $archivo->move(public_path('imagenes'), $nombre);
+
+            $datos['imagen'] = $nombre;
+        }
+
+        Pelicula::create($datos);
+
+        return redirect()
+            ->route('peliculas.index')
+            ->with('success', 'Película agregada correctamente.');
     }
 
     public function edit(Pelicula $pelicula)
@@ -41,15 +60,37 @@ class PeliculaController extends Controller
             'titulo' => 'required',
         ]);
 
-        $pelicula->update($request->only(['titulo', 'descripcion', 'genero', 'anio']));
-        return redirect()->route('peliculas.index')->with('success', 'Película actualizada.');
+        $datos = $request->only([
+            'titulo',
+            'descripcion',
+            'genero',
+            'anio'
+        ]);
+
+        if ($request->hasFile('imagen')) {
+
+            $archivo = $request->file('imagen');
+
+            $nombre = time() . '.' . $archivo->getClientOriginalExtension();
+
+            $archivo->move(public_path('imagenes'), $nombre);
+
+            $datos['imagen'] = $nombre;
+        }
+
+        $pelicula->update($datos);
+
+        return redirect()
+            ->route('peliculas.index')
+            ->with('success', 'Película actualizada.');
     }
 
     public function destroy(Pelicula $pelicula)
     {
         $pelicula->delete();
-        return redirect()->route('peliculas.index')->with('success', 'Película eliminada.');
-    }
 
-    
+        return redirect()
+            ->route('peliculas.index')
+            ->with('success', 'Película eliminada.');
+    }
 }

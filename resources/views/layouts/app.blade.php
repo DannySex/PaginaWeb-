@@ -6,7 +6,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Cinemex') }}</title>
+    <title>{{ config('app.name', 'Anime') }}</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg,rgba(10, 25, 229, 0.83),rgb(227, 224, 30));
+            background: linear-gradient(135deg,rgba(246, 54, 217, 0.83),rgb(120, 145, 236));
             min-height: 100vh;
         }
 

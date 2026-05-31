@@ -13,6 +13,7 @@ class Pelicula extends Model
         'genero',
         'anio',
         'user_id',
+        'imagen'
     ];
 
       public function user()

@@ -14,12 +14,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">Películas App</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Peliculas</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     @auth
                         <li class="nav-item">
-                            <span class="nav-link">Hola, {{ Auth::user()->name }}</span>
+                            
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-danger nav-link text-white" href="{{ route('logout') }}"
